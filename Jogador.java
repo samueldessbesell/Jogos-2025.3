@@ -1,8 +1,9 @@
 public class Jogador extends Entidade{
     private int nivel;
 
-    public Jogador(String nome, int hp, int forca, int destreza, int agilidade, int constituicao) {
-        super(nome, hp, forca, destreza, agilidade, constituicao);
+    public Jogador(String nome, int hp, int forca, int destreza, int agilidade, int constituicao,
+                    Arma arma, Armadura armadura, int classeArmadura) {
+        super(nome, hp, forca, destreza, agilidade, constituicao, arma, armadura, classeArmadura);
         this.nivel = 1;
     }
 
