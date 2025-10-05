@@ -1,7 +1,8 @@
 public class Adversario extends Entidade {
         
-    public Adversario(String nome, int hp, int forca, int destreza, int agilidade, int constituicao) {
-        super(nome, hp, forca, destreza, agilidade, constituicao);
+    public Adversario(String nome, int hp, int forca, int destreza, int agilidade, int constituicao,
+                        Arma arma, Armadura armadura, int classeArmadura) {
+        super(nome, hp, forca, destreza, agilidade, constituicao, arma, armadura, classeArmadura);
     }
 
 
