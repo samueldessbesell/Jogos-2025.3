@@ -1,49 +1,50 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Entidade {
     private String nome;
-    private int hp;
-    private int forca;
+    private double hp;
+    private double forca;
     private int destreza;
     private int agilidade;
     private int constituicao;
-    //private int classeArmadura;
-    //private int dano;
+    private Arma arma;
+    private Armadura armadura;
+    private int classeArmadura;
+    private Random random = new Random();
+    private ArrayList<Integer> historicoRolagens = new ArrayList<>();
     
-    public Entidade(String nome, int hp, int forca, int destreza, int agilidade, int constituicao) {
+    public Entidade(String nome, double hp, double forca, int destreza, int agilidade,
+                    int constituicao, Arma arma, Armadura armadura, int classeArmadura) {
         setNome(nome);
         setHp(hp);
         setForca(forca);
         setDestreza(destreza);
         setAgilidade(agilidade);
         setConstituicao(constituicao);
-    }
-
-    private Random r = new Random();
-
-    public void atacar(Entidade oponente, Arma arma){
-        double danoForca = arma.getConstanteDano() + this.forca*1.5 + r.nextInt(1, 12);
-        double danoDestreza = arma.getConstanteDano() + this.destreza + 2*(r.nextInt(1, 6) + r.nextInt(1, 4));
-        if (arma.getCategoria() == "armaPesada") {
-            oponente.hp -= danoForca;
-            System.out.println(this.nome + " ataca " + oponente.nome + " com " + arma.getNome() + " causando " + danoForca + " de dano!");
-        }else if(arma.getCategoria() == "armaLeve") {
-            oponente.hp -= danoDestreza;
-            System.out.println(this.nome + " ataca " + oponente.nome + " com " + arma.getNome() + " causando " + danoDestreza + " de dano!");
-        }else{
-            System.out.println("Categoria de arma não encontrada. Não foi possível atacar.");
-        }
-        if(oponente.hp < 0) oponente.hp = 0;
-        
-        mostrarStatus();
-        oponente.mostrarStatus();
-        System.out.println();
+        setArma(arma);
+        setArmadura(armadura);
+        setClasseArmadura(classeArmadura);
     }
 
     public void mostrarStatus(){
         System.out.println(this.nome + ":       \t" + hp + " hp");
     }
     
+    public int rolarDados(int faces){
+        int rolagem = random.nextInt(1, faces) + 1;
+        historicoRolagens.add(rolagem);
+        return rolagem;
+    }
+    public int getRolagem(){
+        int valorRolagem = historicoRolagens.get(0);
+        historicoRolagens.remove(0);
+        return valorRolagem;
+    }
+    public void limparHistoricoRolagens(){
+        historicoRolagens.clear();
+    }
+
     public String getNome() {
         return nome;
     }
@@ -51,17 +52,18 @@ public abstract class Entidade {
         this.nome = nome;
     }
 
-    public int getHp() {
+    public double getHp() {
         return hp;
     }
-    public void setHp(int hp) {
-        this.hp = hp;
+    public void setHp(double hp) {
+        if (hp >= 0) this.hp = hp;
+        else this.hp = 0;
     }
 
-    public int getForca() {
+    public double getForca() {
         return forca;
     }
-    public void setForca(int forca) {
+    public void setForca(double forca) {
         this.forca = forca;
     }
 
@@ -84,5 +86,26 @@ public abstract class Entidade {
     }
     public void setConstituicao(int constituicao) {
         this.constituicao = constituicao;
+    }
+
+    public Arma getArma() {
+        return arma;
+    }
+    public void setArma(Arma arma) {
+        this.arma = arma;
+    }
+
+    public Armadura getArmadura() {
+        return armadura;
+    }
+    public void setArmadura(Armadura armadura) {
+        this.armadura = armadura;
+    }
+
+    public int getClasseArmadura() {
+        return classeArmadura;
+    }
+    public void setClasseArmadura(int classeArmadura) {
+        this.classeArmadura = classeArmadura;
     }
 }
