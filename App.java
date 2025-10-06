@@ -1,9 +1,10 @@
 public class App{
-    public static void main(String[] args) throws Exception {
-        //Menu menu = new Menu();
-        //menu.exibirMenu();
 
-        Arma arma1 = new Arma("Quebra crânio", 2, "armaPesada");
+    public static void main(String[] args) throws Exception {
+        Jogo j = new Jogo();
+        j.exibirMenu();
+
+        /*Arma arma1 = new Arma("Quebra crânio", 2, "armaPesada");
         Jogador player1 = new Jogador("Pukeman", 50, 4, 2, 1, 3, arma1, null, 10);
 
         Arma arma2 = new Arma("Foice ceifadora", 2, "armaLeve");
@@ -15,6 +16,6 @@ public class App{
         adversario1.mostrarStatus();
         System.out.println();
 
-        combate1.iniciarCombate(player1, adversario1);
+        combate1.iniciarCombate(player1, adversario1);*/
     }
 }
