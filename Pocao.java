@@ -21,17 +21,16 @@ public class Pocao {
         return total;
     }
 
-public void recuperarVida(int quantidade) {
-    this.vida += quantidade;
-    if (this.vida > this.vidaMaxima) {
-        this.vida = this.vidaMaxima;
+    public void recuperarVida(int quantidade) {
+        this.vida += quantidade;
+        if (this.vida > this.vidaMaxima) this.vida = this.vidaMaxima;
+        System.out.println("Sua vida atual é: " + this.vida + "/" + this.vidaMaxima);
     }
-    System.out.println("Sua vida atual é: " + this.vida + "/" + this.vidaMaxima);
 
-    public void usar(Jogador jogador) {
+    public void usar() {
         if (usosRestantes > 0) {
             int cura = rolar3d6();
-            jogador.recuperarVida(cura);
+            recuperarVida(cura);
             usosRestantes--;
             System.out.println("Você usou uma poção e recuperou " + cura + " de vida!");
             System.out.println("Usos restantes da poção: " + usosRestantes);
@@ -43,10 +42,10 @@ public void recuperarVida(int quantidade) {
     public int getUsosRestantes() {
         return usosRestantes;
     }
-
+    public void setUsosRestantes(int usosRestantes){
+        this.usosRestantes = usosRestantes;
+    }
     public boolean estaVazia() {
         return usosRestantes == 0;
     }
-
-    
 }
