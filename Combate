@@ -46,37 +46,6 @@ public class Combate {
                 break;
         }
     }
-    
-//     public void usarHabilidade(Entidade conjurador, Entidade alvo, Habilidade habilidade){
-// 	switch(conjurador.getHabilidade().getNome()){
-// 		case "criogenia":
-// 			if(conjurador.getMana() > 0){
-// 				System.out.println(conjurador.getNome() + " desacelerou " + alvo.getNome() + " através de criogenia. (Destreza atual: " + alvo.getDestreza() + ")");
-// 				alvo.setDestreza(alvo.getDestreza() - 1); //pode ser intencionalmente negativo 
-//             } else {
-//                 System.out.println("Mana insuficiente. " + conjurador.getNome() + " perdeu a vez." );
-//             }
-//             conjurador.setMana(conjurador.getMana() - 1);
-//             break;
-
-// 		case "fortalecimento":
-// 			conjurador.setForca(1.1*conjurador.getForca() + 1);
-//             conjurador.setMana(conjurador.getMana() - 2);
-// 			break;
-
-// 		case "vampirismo":
-// 			alvo.setHp(alvo.getHp()  - conjurador.getConstituicao());
-// 			conjurador.setHp(conjurador.getHp() + conjurador.getConstituicao());
-// 			conjurador.setMana(conjurador.getMana() - 3);
-// 			break;
-
-// 		case "vomitoMagico":
-// 			System.out.print(conjurador.getNome() + " vomitou em " + alvo.getNome() + "!");
-// 			alvo.setHp(alvo.getHp() - conjurador.getMana());
-// 			conjurador.setMana(conjurador.getMana() - conjurador.getMana()/2);
-// 			break;
-// }
-
 
     public void critar(Entidade infligidor, Entidade receptor, Arma arma){
         switch (arma.getCategoria()) {
@@ -114,7 +83,7 @@ public class Combate {
                 double danoForca = arma.getConstanteDano() + infligidor.getForca()*1.5 + infligidor.rolarDados(12);
                 receptor.setHp(receptor.getHp() - danoForca);
                 System.out.println(infligidor.getNome() + " ataca " + receptor.getNome() + " com " + arma.getNome() + " causando " +
-                danoForca + " de dano (D12: " + infligidor.getRolagem() + " + For: " + infligidor.getForca()*1.5 + " + " + " + K: " +
+                danoForca + " de dano (D12: " + infligidor.getRolagem() + " + For: " + infligidor.getForca()*1.5 + " + K: " +
                 arma.getConstanteDano() + ")!");
                 break;
             
