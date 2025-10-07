@@ -6,8 +6,8 @@ public abstract class Entidade {
     private double hp;
     private double forca;
     private int destreza;
-    private int agilidade;
     private int constituicao;
+    private int agilidade;
     private Arma arma;
     private Armadura armadura;
     private int classeArmadura;
@@ -56,7 +56,7 @@ public abstract class Entidade {
         return hp;
     }
     public void setHp(double hp) {
-        if (hp >= 0) this.hp = hp;
+        if (hp >= 0) this.hp = hp + this.constituicao;
         else this.hp = 0;
     }
 
